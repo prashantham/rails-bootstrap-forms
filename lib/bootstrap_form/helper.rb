@@ -7,6 +7,8 @@ module BootstrapForm
     def bootstrap_form_for(object, options = {}, &block)
       options.reverse_merge!({builder: BootstrapForm::FormBuilder})
 
+      options[:layout] = options[:layout] || :horizontal
+
       layout = case options[:layout]
         when :inline
           "form-inline"

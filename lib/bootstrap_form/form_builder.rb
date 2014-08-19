@@ -163,7 +163,7 @@ module BootstrapForm
       options[:class] << " #{feedback_class}" if options[:icon]
       options[:class] << " required" if options[:required]
 
-      content_tag(:div, options.except(:id, :label, :help, :icon, :label_col, :control_col, :layout)) do
+      content_tag(:div, options.except(:id, :label, :help, :icon, :label_col, :control_col, :layout, :required)) do
         label   = generate_label(options[:id], name, options[:label], options[:label_col], options[:layout]) if options[:label]
         control = capture(&block).to_s
         control.concat(generate_help(name, options[:help]).to_s)
