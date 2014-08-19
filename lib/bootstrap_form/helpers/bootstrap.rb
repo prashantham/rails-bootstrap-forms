@@ -2,7 +2,7 @@ module BootstrapForm
   module Helpers
     module Bootstrap
       def submit(name = nil, options = {})
-        options.merge! class: 'btn btn-default' unless options.has_key? :class
+        options.merge! class: 'btn btn-warning' unless options.has_key? :class
         super(name, options)
       end
 
