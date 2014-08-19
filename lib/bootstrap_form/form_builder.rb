@@ -161,6 +161,7 @@ module BootstrapForm
       options[:class] = ["form-group", options[:class]].compact.join(' ')
       options[:class] << " #{error_class}" if has_error?(name)
       options[:class] << " #{feedback_class}" if options[:icon]
+      options[:class] << " required" if options[:required]
 
       content_tag(:div, options.except(:id, :label, :help, :icon, :label_col, :control_col, :layout)) do
         label   = generate_label(options[:id], name, options[:label], options[:label_col], options[:layout]) if options[:label]
@@ -203,7 +204,7 @@ module BootstrapForm
     end
 
     def default_label_col
-      "col-sm-2"
+      "col-sm-3"
     end
 
     def offset_col(offset)
@@ -211,7 +212,7 @@ module BootstrapForm
     end
 
     def default_control_col
-      "col-sm-10"
+      "col-sm-9"
     end
 
     def hide_class
@@ -262,7 +263,7 @@ module BootstrapForm
       control_col = options.delete(:control_col)
       layout = get_group_layout(options.delete(:layout))
 
-      form_group(method, id: options[:id], label: { text: label, class: label_class }, help: help, icon: icon, label_col: label_col, control_col: control_col, layout: layout, class: wrapper_class) do
+      form_group(method, id: options[:id], label: { text: label, class: label_class }, help: help, icon: icon, label_col: label_col, control_col: control_col, layout: layout, class: wrapper_class, required: options[:required]) do
         yield
       end
     end
