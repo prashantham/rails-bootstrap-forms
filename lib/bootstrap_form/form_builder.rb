@@ -161,7 +161,7 @@ module BootstrapForm
       options[:class] = ["form-group", options[:class]].compact.join(' ')
       options[:class] << " #{error_class}" if has_error?(name)
       options[:class] << " #{feedback_class}" if options[:icon]
-      options[:class] << " required" if options[:required]
+      options[:class] << " required" if options[:required_star]
 
       content_tag(:div, options.except(:id, :label, :help, :icon, :label_col, :control_col, :layout, :required)) do
         label   = generate_label(options[:id], name, options[:label], options[:label_col], options[:layout]) if options[:label]
@@ -262,8 +262,9 @@ module BootstrapForm
       label_col = options.delete(:label_col)
       control_col = options.delete(:control_col)
       layout = get_group_layout(options.delete(:layout))
+      required_star = options.delete(:required)
 
-      form_group(method, id: options[:id], label: { text: label, class: label_class }, help: help, icon: icon, label_col: label_col, control_col: control_col, layout: layout, class: wrapper_class, required: options[:required]) do
+      form_group(method, id: options[:id], label: { text: label, class: label_class }, help: help, icon: icon, label_col: label_col, control_col: control_col, layout: layout, class: wrapper_class, required_star: required_star) do
         yield
       end
     end
